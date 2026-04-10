@@ -45,7 +45,7 @@ app.post("/convert", upload.single("file"), (req, res) => {
         const files = fs.readdirSync(outputDir);
         const pdfFile = files.find(file => file.endsWith(".pdf"));
 
-        if (!pdfFile) {
+        if (!pdfFile) {  
             return res.status(500).send("PDF not generated");
         }
 
@@ -59,9 +59,18 @@ app.post("/convert", upload.single("file"), (req, res) => {
     });
 });
 
-app.listen(5000, () => {
-    console.log("Server running on http://localhost:5000");
+app.use(express.static(path.join(__dirname, "public")));
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
+
+// app.listen(5000, () => {
+//     console.log("Server running on http://localhost:5000");
+// });
 
 app.get("/", (req, res) => {
     res.send("Server is running ✅");
