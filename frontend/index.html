@@ -1,0 +1,86 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Word to PDF</title>
+</head>
+<body>
+
+<h2>Word to PDF Converter</h2>
+
+<input type="file" id="fileInput" />
+<button onclick="convert()">Convert</button>
+
+<script>
+function convert() {
+    const file = document.getElementById("fileInput").files[0];
+
+    if (!file) {
+        alert("Please select a file");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    fetch("http://localhost:5000/convert", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.blob())
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "converted.pdf";
+        a.click();
+    })
+    .catch(err => {
+        alert("Conversion failed");
+        console.error(err);
+    });
+}
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word to PDF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>PDF Tools</h1>
+</header>
+
+<div class="container">
+    
+    <h2>Word to PDF Converter</h2>
+    <p class="subtitle">Convert Word files to PDF easily</p>
+
+    <!-- <div class="upload-box" onclick="triggerFile()">
+        <input type="file" id="fileInput" hidden>
+        <p>📄 Drag & Drop Word File Here</p>
+        <span>or click to upload</span>
+    </div> -->
+
+    <div class="upload-box" onclick="triggerFile()">
+    <input type="file" id="fileInput" hidden onchange="showFileName()">
+    
+    <p id="uploadText">📄 Drag & Drop Word File Here</p>
+    <span id="fileName">or click to upload</span>
+</div>
+
+    <button class="convert-btn" onclick="convert()">Convert to PDF</button>
+
+    <p id="status"></p>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
