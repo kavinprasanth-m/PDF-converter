@@ -1,12 +1,10 @@
 {
   "name": "word-to-pdf",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
-  "type": "commonjs",
   "scripts": {
-  "start": "node backend/server.js"
-},
+    "start": "node server.js"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
